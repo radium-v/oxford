@@ -29,7 +29,6 @@
     "jquery.transit": "^0.9.12",
     "modernizr": "^2.8.1",
     "normalize.css": "^3.0.1",
-    "requirejs": "^2.1.11",
-    "almond": "~0.3.0"
+    "requirejs": "^2.1.11"
   }
 }

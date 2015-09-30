@@ -1,9 +1,8 @@
 {
-	"almond": true,
 	"baseUrl": "./js/",
 	"out": "js/build/app.min.js",
 	"include": "main",
-	"name": "lib/almond",
+	"name": "main",
 	"findNestedDependencies": true,
 
 	"paths": {

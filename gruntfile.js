@@ -39,7 +39,6 @@ module.exports = function(grunt) {
 				},
 
 				files: {
-					'almond.js': 'almond/almond.js',
 					'jquery.js': 'jquery/dist/jquery.js',
 					'jquery.transit.js': 'jquery.transit/jquery.transit.js',
 					'require.js': 'requirejs/require.js',
