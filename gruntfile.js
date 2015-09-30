@@ -3,21 +3,29 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
-		autoprefixer: {
+		postcss: {
 			options: {
-				browsers: ['last 1 versions', 'ie 9', 'ie 10']
+				map: {
+					inline: false,
+					sourcesContent: true,
+					prev: 'css/'
+				},
+
+				processors: [
+					require('autoprefixer')({
+						browsers: [
+							'last 1 versions',
+							'ie 9',
+							'ie 10'
+						]
+					})
+				]
 			},
 
 			single_file: {
-				options: {
-					map: {
-						sourcesContent: true,
-						prev: 'css/'
-					}
-				},
 				src: 'css/style.min.css',
 				dest: 'css/style.min.css'
-			},
+			}
 		},
 
 		bowercopy: {
@@ -29,6 +37,7 @@ module.exports = function(grunt) {
 				options: {
 					destPrefix: 'js/lib'
 				},
+
 				files: {
 					'almond.js': 'almond/almond.js',
 					'jquery.js': 'jquery/dist/jquery.js',
@@ -64,18 +73,23 @@ module.exports = function(grunt) {
 		watch: {
 			styles: {
 				files: ['less/**/*.*'],
-				tasks: ['less:compile', 'autoprefixer'],
-				options: {
-					spawn: false
-				}
+				tasks: [
+					'less:compile',
+					'autoprefixer'
+				]
 			},
 
 			scripts: {
-				files: ['js/**/*.*', '!js/lib/*.*', '!js/build/*.*'],
-				tasks: ['jshint', 'requirejs:compile'],
-				options: {
-					spawn: false
-				}
+				files: [
+					'js/**/*.*',
+					'!js/lib/*.*',
+					'!js/build/*.*'
+				],
+
+				tasks: [
+					'jshint',
+					'requirejs:compile'
+				]
 			},
 
 			lint: {
@@ -90,14 +104,14 @@ module.exports = function(grunt) {
 		less: {
 			compile: {
 				options: {
-					ieCompat: false,
 					compress: false,
+					ieCompat: false,
 					sourceMap: true,
 					sourceMapBasepath: '/assets/less/',
 					sourceMapFilename: 'css/style.min.css.map',
 					sourceMapRootpath: '/assets/',
-					strictMath: true,
 					sourceMapURL: 'style.min.css.map',
+					strictMath: true
 				},
 
 				files: {
@@ -107,13 +121,23 @@ module.exports = function(grunt) {
 		},
 
 		jshint: {
-			files: ['js/**/*.js', '!js/lib/*.js', '!js/**/*.min.js'],
+			files: [
+				'js/**/*.js',
+				'!js/lib/*.js',
+				'!js/**/*.min.js'
+			],
+
 			options: grunt.file.readJSON('js/.jshintrc')
 		},
 
 		jscs: {
 			main: {
-				src: ['js/**/*.js', '!js/lib/*.*', '!js/build/*.*'],
+				src: [
+					'js/**/*.js',
+					'!js/lib/*.*',
+					'!js/build/*.*'
+				],
+
 				options: {
 					config: 'js/.jscsrc'
 				}
@@ -133,7 +157,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks("grunt-jscs");
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
-	grunt.loadNpmTasks('grunt-autoprefixer');
+	grunt.loadNpmTasks('grunt-postcss');
 
 	grunt.registerTask('default', 'build and prefix less, lint and build js', [
 		'buildless',
@@ -144,7 +168,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('buildless', 'build and auto-prefix less files', [
 		'less',
-		'autoprefixer'
+		'postcss'
 	]);
 
 	grunt.registerTask('watchless', 'build and watch less', [
