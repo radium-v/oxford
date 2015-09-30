@@ -40,7 +40,6 @@ module.exports = function(grunt) {
 
 				files: {
 					'jquery.js': 'jquery/dist/jquery.js',
-					'jquery.transit.js': 'jquery.transit/jquery.transit.js',
 					'require.js': 'requirejs/require.js',
 					'modernizr.js': 'modernizr/modernizr.js'
 				},

@@ -7,12 +7,10 @@
 
 	"paths": {
 		"app": "app",
-		"jquery": "lib/jquery",
-		"jquery.transit": "lib/jquery.transit"
+		"jquery": "lib/jquery"
 	},
 
 	"shim": {
-		"jquery.transit": ["jquery"]
 	},
 
 	"waitSeconds": 15,
