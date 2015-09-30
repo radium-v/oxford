@@ -2,19 +2,17 @@
   "name": "oxford",
   "version": "0.1.0",
   "description": "A front-end skeleton framework for rapid website development",
-  "author": "John Kreitlow <jkreitlow@deepfocus.net>",
-
+  "author": "John Kreitlow <john.kreitlow@gmail.com>",
+  "license": "MIT",
   "contributors": [
     "Adam Thomann <adam.thomann@deepfocus.net>",
     "Greg Ratner <greg.ratner@deepfocus.net>",
     "Akito Nakahara <akito.nakahara@deepfocus.net>"
   ],
-
   "repository": {
     "type": "git",
     "url": "https://github.com/DeepFocus/oxford"
   },
-
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-autoprefixer": "^1.0.1",
